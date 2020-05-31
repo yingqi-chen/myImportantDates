@@ -27,6 +27,10 @@ router.route("/:id")
   .post((req,res) => {
     res.send("this is userrr one post.page")
   })
+  .put((req,res) => {
+    res.send("this is use put.page")
+  })
+
 
 router.use('/:id/events', event_routes);
 
