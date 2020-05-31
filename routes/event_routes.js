@@ -10,16 +10,16 @@ router.get('/new',(req,res) => {
     res.send("this is events/:id/new.page")
 })
 
+router.get('/:id/edit',(req,res) => {
+    res.send("this is events/:id/new.page")
+})
+
 router.post('/',(req,res) => {
     res.send("this is events/:id/new.page")
 })
 
 router.get('/:id',(req,res) => {
     res.send("this is events/:id.page")
-})
-
-router.get('/:id/edit',(req,res) => {
-    res.send("this is events/:id/new.page")
 })
 
 router.put('/:id',(req,res) => {
