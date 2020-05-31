@@ -8,7 +8,13 @@ router.get('/',(req,res) => {
     res.send("this is users.page")
 })
 
-router.use('/events', event_routes);
+router.get('/:id',(req,res) => {
+    res.send("this is users.page")
+})
+
+
+
+router.use('/:id/events', event_routes);
 
 module.exports = router
 
