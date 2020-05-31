@@ -6,7 +6,7 @@ const user_routes = require("./user_routes")
 
 
 router.get('/',(req,res) => {
-    res.send("this is index.page")
+    res.render('page/index.ejs')
 });
 
 router.use('/users', user_routes);
