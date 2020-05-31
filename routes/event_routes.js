@@ -2,34 +2,31 @@ const express = require('express')
 
 const router = express.Router()
 
-router.get('/',(req,res) => {
+router.route('/')
+  .get((req,res) => {
     res.send("this is events.page")
-})
+   })
+  .post((req,res) => {
+    res.send("this is events/:id/post.page")
+   })
 
 router.get('/new',(req,res) => {
-    res.send("this is events/:id/new.page")
+    res.send("new page")
 })
 
 router.get('/:id/edit',(req,res) => {
-    res.send("this is events/:id/new.page")
+    res.send("edit page")
 })
 
-router.post('/',(req,res) => {
-    res.send("this is events/:id/new.page")
-})
-
-router.get('/:id',(req,res) => {
+router.route('/:id')
+  .get((req,res) => {
     res.send("this is events/:id.page")
-})
-
-router.put('/:id',(req,res) => {
-    res.send("this is events/:id/new.page")
-})
-
-router.delete('/:id',(req,res) => {
-    res.send("this is events/:id/new.page")
-})
-
-
+    })
+  .put((req,res) => {
+    res.send("this is events/:id/put.page")
+    })
+  .delete((req,res) => {
+    res.send("this is events/:id/delete.page")
+    })
 
 module.exports = router
