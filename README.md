@@ -5,7 +5,7 @@ User story:
   MVP:
 	1. A user is able to create an event that is important and then add information to the event(like images and description). 
 	2. A user is able to go to event page and see that event is counting down if it hasn't happened yet or will see how far is the next aniversary (options include year or week or month anniversary)
-    3. A user is able to edit or delete the event
+  3. A user is able to edit or delete the event
 
 
   Future features: 
