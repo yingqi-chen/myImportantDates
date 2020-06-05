@@ -4,9 +4,31 @@ A practical app combined with express.js backend and React frontend.
 
 ## Usage
 
-```
 1. Git clone `git@github.com:chanwkkk/myImportantDates.git`
 2. Run `npm run dev` to start the server
+3. If the server is on, it will looks like this providing all of the routes that is available currently: 
+ 
+ ```
+    [nodemon] 2.0.4
+    [nodemon] to restart at any time, enter `rs`
+    [nodemon] watching path(s): *.*
+    [nodemon] watching extensions: js,mjs,json
+    [nodemon] starting `node server.js`
+    Listening on PORT 5000
+    [
+      { path: '/', methods: [ 'GET' ] },
+      { path: '/users', methods: [ 'GET', 'POST' ] },
+      { path: '/users/new', methods: [ 'GET' ] },
+      { path: '/users/:id/edit', methods: [ 'GET' ] },
+      { path: '/users/:id', methods: [ 'GET', 'POST', 'PUT' ] },
+      { path: '/users/:id/events', methods: [ 'GET', 'POST' ] },
+      { path: '/users/:id/events/new', methods: [ 'GET' ] },
+      { path: '/users/:id/events/:id/edit', methods: [ 'GET' ] },
+      {
+        path: '/users/:id/events/:id',
+        methods: [ 'GET', 'PUT', 'DELETE' ]
+      }
+    ]
 ```
 
 ## Package
