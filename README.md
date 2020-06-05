@@ -1,8 +1,21 @@
 # My Important Dates
 
-A practical app combined with express.js backend and React frontend
+A practical app combined with express.js backend and React frontend.
 
-User story:
+## Usage
+
+```
+1. Git clone `git@github.com:chanwkkk/myImportantDates.git`
+2. Run `npm run dev` to start the server
+```
+
+## Package
+
+`nodemon` is used to monitor whatever changes is made and will right away update it.
+`express-list-endpoints` is used to list all the routes we have so far. Once you run `npm run dev`, you will see all the routes that are currently available. 
+
+
+### User story:
 
   MVP:
 	1. A user is able to create an event that is important and then add information to the event(like images and description). 
