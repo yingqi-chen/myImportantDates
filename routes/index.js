@@ -1,15 +1,16 @@
-const express = require('express')
+const express = require('express');
 
-const router = express.Router()
+// eslint-disable-next-line new-cap
+const router = express.Router();
 
-const user_routes = require("./user_routes")
+const userRoutes = require('./user_routes');
 
 
-router.get('/',(req,res) => {
-    res.render('page/index.ejs')
+router.get('/', (req, res) => {
+  res.render('page/index.ejs');
 });
 
-router.use('/users', user_routes);
+router.use('/users', userRoutes);
 
 
-module.exports = router
+module.exports = router;
