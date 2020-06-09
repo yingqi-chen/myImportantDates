@@ -1,3 +1,4 @@
+/* eslint-disable new-cap */
 const mongoose = require('mongoose');
 
 const albumSchema = mongoose.Schema({
