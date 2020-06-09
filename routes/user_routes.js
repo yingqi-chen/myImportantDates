@@ -5,13 +5,14 @@ const eventRoutes = require('./event_routes');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-router.post((req, res) => {
-  res.send('this is use post.page');
+router.post('/', (req, res) => {
+  
+  res.send(req.params);
 });
 
 router.route('/:id')
     .get((req, res) => {
-      res.send('this is a user.page');
+      res.send(req.params);
     })
     .post((req, res) => {
       res.send('this is userrr one post.page');
