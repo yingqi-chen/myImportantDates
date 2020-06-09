@@ -8,9 +8,6 @@ const routes = require('./routes');
 
 app.use('/', routes);
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, './views') );
-
 mongoose.connect('mongodb://localhost:27017/my_important_dates', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
