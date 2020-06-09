@@ -11,14 +11,6 @@ router.route('/')
       res.send('this is events/:id/post.page');
     });
 
-router.get('/new', (req, res) => {
-  res.send('new page');
-});
-
-router.get('/:id/edit', (req, res) => {
-  res.send('edit page');
-});
-
 router.route('/:id')
     .get((req, res) => {
       res.send('this is events/:id.page');

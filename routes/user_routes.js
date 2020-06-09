@@ -13,10 +13,6 @@ router.route('/')
       res.send('this is use post.page');
     });
 
-router.get('/new', (req, res) => {
-  res.send('this is users/new.page');
-});
-
 router.get('/:id/edit', (req, res) => {
   res.send('this is users/edit.page');
 });
