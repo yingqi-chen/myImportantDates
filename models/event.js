@@ -4,7 +4,7 @@ class Event {
   constructor(date, name, userId, description) {
     this.date = date;
     this.name = name;
-    this.user_id = userId;
+    this.userId = userId;
     this.description = description;
   }
 }
