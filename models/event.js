@@ -1,10 +1,15 @@
 /* eslint-disable require-jsdoc */
 // eslint-disable-next-line no-unused-vars
-class Event {
-  constructor(date, name, userId, description) {
-    this.date = date;
-    this.name = name;
-    this.userId = userId;
-    this.description = description;
-  }
-}
+
+const mongoose = require('mongoose');
+
+const eventSchema = mongoose.Schema({
+  name: {type: String},
+  date: {type: Date, default: Date.now},
+  ownerId: {type: Number},
+  description: {type: String},
+  joiners: [{joinerID: Number}],
+  album: {albumsID: Number}
+});
+
+module.exports = mongoose.model('Event', eventSchema);
