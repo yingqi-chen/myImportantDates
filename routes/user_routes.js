@@ -2,12 +2,15 @@ const express = require('express');
 
 const eventRoutes = require('./event_routes');
 
+const User = require('../models/user')
+
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-router.post('/', (req, res) => {
-  
-  res.send(req.params);
+router.post('/', async (req, res) => {
+  const user = new User(req.body);
+  const result = await user.save();
+  res.json(result);
 });
 
 router.route('/:id')
