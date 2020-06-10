@@ -5,11 +5,10 @@ const mongoose = require('mongoose');
 const app = express();
 const PORT = 5000;
 const routes = require('./routes');
+const bodyParser = require('body-parser');
 
+app.use(bodyParser.json());
 app.use('/', routes);
-
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, './views') );
 
 mongoose.connect('mongodb://localhost:27017/my_important_dates', {
   useNewUrlParser: true,

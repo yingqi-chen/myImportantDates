@@ -1,16 +1,13 @@
 /* eslint-disable new-cap */
-/* eslint-disable require-jsdoc */
-// eslint-disable-next-line no-unused-vars
-
 const mongoose = require('mongoose');
 
-const eventSchema = mongoose.Schema({
+const albumSchema = mongoose.Schema({
   name: {type: String},
   date: {type: Date, default: Date.now},
   ownerId: {type: Number},
   description: {type: String},
   joiners: [{joinerID: Number}],
-  albumID: {type: Number}
+  eventID: {type: String}
 });
 
-module.exports = mongoose.model('Event', eventSchema);
+module.exports = mongoose.model('Album', albumSchema);

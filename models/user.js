@@ -1,9 +1,12 @@
+/* eslint-disable new-cap */
 /* eslint-disable require-jsdoc */
 // eslint-disable-next-line no-unused-vars
-class User {
-  constructor(name, email, password) {
-    this.name = name;
-    this.email = email;
-    this.password = password;
-  }
-}
+const mongoose = require('mongoose');
+
+const userSchema = mongoose.Schema({
+  name: {type: String},
+  email: {type: String},
+  password: {type: String},
+});
+
+module.exports = mongoose.model('User', userSchema);
