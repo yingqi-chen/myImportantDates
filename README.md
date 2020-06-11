@@ -39,6 +39,8 @@ A practical app combined with express.js backend and React frontend.
 
 ## API
 
+### User
+
 1. POST /users   
   It is used for creating a user. You have to pass something like this, "name", "email" and "password" are required:
   ```
@@ -48,7 +50,7 @@ A practical app combined with express.js backend and React frontend.
   "password": "pw"
 }
   ```
-   and will get return: 
+   and will get the new user: 
 ```
   {
     "eventIDs": [],
@@ -94,6 +96,60 @@ A practical app combined with express.js backend and React frontend.
     "__v": 0
   }
    ```
+### Events API
+
+  The Event Schema looks like:
+  ```
+  {
+  name: {type: String},
+  date: {type: Date, default: Date.now},
+  ownerId: {type: String},
+  description: {type: String},
+  joiners: [{joinerID: Number}],
+  albumID: {type: Number}
+}
+  ```
+
+  1. GET /users/:id/events
+  It is used for getting all events of a certain user. And it will return an array: 
+```
+ [
+    {
+        "_id": "5ee265c21681f4058fa15f1e",
+        "name": "new_event4",
+        "date": "2020-06-11T17:11:30.099Z",
+        "joiners": [],
+        "ownerId": "5ee1aa395e99fa23e3d2dc4c",
+        "__v": 0
+    },
+    {
+        "_id": "5ee266381681f4058fa15f1f",
+        "name": "new_event1",
+        "date": "2020-06-11T17:13:28.350Z",
+        "joiners": [],
+        "ownerId": "5ee1aa395e99fa23e3d2dc4c",
+        "__v": 0
+    }
+ ]
+```
+  2. POST /users/:id/events/ 
+  It is used for creating a user. It will grab the user id from the URL, but you have to provide a name(required). The date is defaulted to be `Date.now`.
+  ```
+  {
+  "name": "new_event",
+  }
+  ```
+   and will get a new Event: 
+```
+    {
+        "_id": "5ee266381681f4058fa15f1f",
+        "name": "new_event1",
+        "date": "2020-06-11T17:13:28.350Z",
+        "joiners": [],
+        "ownerId": "5ee1aa395e99fa23e3d2dc4c",
+        "__v": 0
+    }
+```
 
 ### User story:
 

@@ -14,7 +14,7 @@ router.route('/')
     })
     .post(async (req, res) => {
       event = new Event(req.body);
-      event.ownerId = req.params.id
+      event.ownerId = req.params.id;
       const result = await event.save();
       res.send(result);
     });
