@@ -107,7 +107,7 @@ The user schema looks like:
     "__v": 0
   }
   ```
-  
+
 ### Events API
 
   The Event Schema looks like:
@@ -155,6 +155,19 @@ The user schema looks like:
 ```
     {
         "_id": "5ee266381681f4058fa15f1f",
+        "name": "new_event",
+        "date": "2020-06-11T17:13:28.350Z",
+        "joiners": [],
+        "ownerId": "5ee1aa395e99fa23e3d2dc4c",
+        "__v": 0
+    }
+```
+
+  3. GET /users/:id/events/:event_id 
+  It is used for get the information of a certain event. And you will get the Event: 
+```
+    {
+        "_id": "5ee266381681f4058fa15f1f",
         "name": "new_event1",
         "date": "2020-06-11T17:13:28.350Z",
         "joiners": [],
@@ -162,6 +175,27 @@ The user schema looks like:
         "__v": 0
     }
 ```
+
+  4. PUT /users/:id/events/:event_id 
+  It is used for editing a user. It will grab the event id from the URL, and check if you are the owner. You will have to provide an object with the key/value pair to modify:
+  ```
+  {
+  "name": "modified_event",
+  }
+  ```
+  and will get the new Event: 
+```
+    {
+        "_id": "5ee266381681f4058fa15f1f",
+        "name": "modified_event",
+        "date": "2020-06-11T17:13:28.350Z",
+        "joiners": [],
+        "ownerId": "5ee1aa395e99fa23e3d2dc4c",
+        "__v": 0
+    }
+
+  5. DELETE /users/:id/events/:event_id 
+    It is used for deleting a user. It will grab the event id from the URL, and check if you are the owner. You will get the deleted event. 
 
 ### User story:
 
