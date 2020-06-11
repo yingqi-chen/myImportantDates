@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const eventSchema = mongoose.Schema({
   name: {type: String},
   date: {type: Date, default: Date.now},
-  ownerId: {type: Number},
+  ownerId: {type: String},
   description: {type: String},
   joiners: [{joinerID: Number}],
   albumID: {type: Number}

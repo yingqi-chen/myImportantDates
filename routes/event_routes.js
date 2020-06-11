@@ -8,12 +8,15 @@ router.use('/:id/album', albumRoutes);
 
 router.route('/')
     .get((req, res) => {
-      res.json("events page"); 
+      Event.find({ownerId: req.params.id}, (err, doc) =>{
+        res.json(doc);
+      });
     })
     .post(async (req, res) => {
       event = new Event(req.body);
+      event.ownerId = req.params.id
       const result = await event.save();
-      res.send(req.params.id);
+      res.send(result);
     });
 
 router.route('/:id')
