@@ -84,6 +84,7 @@ A practical app combined with express.js backend and React frontend.
   }
   ```  
   And it will return the information of the NEW user, .it will look like: 
+  ```
   {
     "eventIDs": [],
     "_id": "5ee1bfe3fb5425392695d762",
@@ -91,8 +92,8 @@ A practical app combined with express.js backend and React frontend.
     "email": "afdad",
     "password": "pw", // might change this later
     "__v": 0
-}
-```
+  }
+   ```
 
 
 ### User story:
