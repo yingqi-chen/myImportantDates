@@ -41,6 +41,17 @@ A practical app combined with express.js backend and React frontend.
 
 ### User
 
+The user schema looks like:
+```
+{
+  name: {type: String},
+  email: {type: String},
+  password: {type: String},
+  eventIDs: [{type: String}]
+}
+```
+
+
 1. POST /users   
   It is used for creating a user. You have to pass something like this, "name", "email" and "password" are required:
   ```
@@ -51,7 +62,7 @@ A practical app combined with express.js backend and React frontend.
 }
   ```
    and will get the new user: 
-```
+  ```
   {
     "eventIDs": [],
     "_id": "5ee1bfe3fb5425392695d762",
@@ -60,10 +71,10 @@ A practical app combined with express.js backend and React frontend.
     "password": "pw", // might change this later
     "__v": 0
   }
-```
+  ```
 2. GET /users/:id
   It is used for getting information of a certain user. And it will return: 
-```
+  ```
   {
     "eventIDs": [],
     "_id": "5ee1bfe3fb5425392695d762",
@@ -72,7 +83,7 @@ A practical app combined with express.js backend and React frontend.
     "password": "pw", // might change this later
     "__v": 0
   }
-```
+  ```
 3. PUT /users/:id
   It is used for updating information of a certain user. It will receive an object including any of the following key like this:
   ```
@@ -95,7 +106,8 @@ A practical app combined with express.js backend and React frontend.
     "password": "pw", // might change this later
     "__v": 0
   }
-   ```
+  ```
+  
 ### Events API
 
   The Event Schema looks like:
