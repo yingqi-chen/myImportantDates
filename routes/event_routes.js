@@ -21,13 +21,23 @@ router.route('/')
 
 router.route('/:event_id')
     .get((req, res) => {
-      res.send('this is events/:id.page');
+      eventId = req.params.event_id;
+      event = Event.findById(eventId, (err, doc) =>{
+        res.send(doc);
+      });
     })
     .put((req, res) => {
-      res.send('this is events/:id/put.page');
+      const eventId = req.params.event_id;
+      event = req.body;
+      Event.findByIdAndUpdate(eventId, event, {new: true}, (err, doc)=>{
+        res.json(doc);
+      });
     })
     .delete((req, res) => {
-      res.send('this is events/:id/delete.page');
+      const eventId = req.params.event_id;
+      Event.findByIdAndDelete(eventId, (err, doc)=>{
+        res.json(doc);
+      });
     });
 
 module.exports = router;
