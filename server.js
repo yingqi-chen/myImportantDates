@@ -13,6 +13,7 @@ app.use('/', routes);
 mongoose.connect('mongodb://localhost:27017/my_important_dates', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false 
 }, ()=>{
   console.log('connect succesfully!');
 });
