@@ -8,14 +8,14 @@ const User = require('../models/user')
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-  const user = new User(req.body);
+  user = new User(req.body);
   const result = await user.save();
   res.json(result);
 });
 
 router.route('/:id')
     .get((req, res) => {
-      res.send(req.params);
+      res.json(req.params.id);
     })
     .post((req, res) => {
       res.send('this is userrr one post.page');
