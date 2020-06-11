@@ -14,8 +14,9 @@ router.post('/', async (req, res) => {
 });
 
 router.route('/:id')
-    .get((req, res) => {
-      res.json(req.params.id);
+    .get(async (req, res) => {
+      user = await User.findById(req.params.id)
+      res.json(user);
     })
     .post((req, res) => {
       res.send('this is userrr one post.page');

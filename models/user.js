@@ -7,7 +7,7 @@ const userSchema = mongoose.Schema({
   name: {type: String},
   email: {type: String},
   password: {type: String},
-  eventIDs: [{type: string}]
+  eventIDs: [{type: String}]
 });
 
 module.exports = mongoose.model('User', userSchema);
