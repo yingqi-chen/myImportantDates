@@ -37,6 +37,63 @@ A practical app combined with express.js backend and React frontend.
 
 `express-list-endpoints` is used to list all the routes we have so far. Once you run `npm run dev`, you will see all the routes that are currently available. 
 
+## API
+
+1. POST /users   
+  It is used for creating a user. You have to pass something like this, "name", "email" and "password" are required:
+  ```
+  {
+  "name": "newuser",
+  "email": "afdad",
+  "password": "pw"
+}
+  ```
+   and will get return: 
+```
+  {
+    "eventIDs": [],
+    "_id": "5ee1bfe3fb5425392695d762",
+    "name": "user",
+    "email": "afdad",
+    "password": "pw", // might change this later
+    "__v": 0
+  }
+```
+2. GET /users/:id
+  It is used for getting information of a certain user. And it will return: 
+```
+  {
+    "eventIDs": [],
+    "_id": "5ee1bfe3fb5425392695d762",
+    "name": "user",
+    "email": "afdad",
+    "password": "pw", // might change this later
+    "__v": 0
+  }
+```
+3. PUT /users/:id
+  It is used for updating information of a certain user. It will receive an object including any of the following key like this:
+  ```
+    {
+    "eventIDs": [],
+    "_id": "5ee1bfe3fb5425392695d762",
+    "name": "user",
+    "email": "afdad",
+    "password": "pw", // might change to exclude this property later
+    "__v": 0
+  }
+  ```  
+  And it will return the information of the NEW user, .it will look like: 
+  {
+    "eventIDs": [],
+    "_id": "5ee1bfe3fb5425392695d762",
+    "name": "new_user",
+    "email": "afdad",
+    "password": "pw", // might change this later
+    "__v": 0
+}
+```
+
 
 ### User story:
 

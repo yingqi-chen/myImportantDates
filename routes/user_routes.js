@@ -20,7 +20,7 @@ router.route('/:id')
     })
     .put((req, res) => {
       const id = req.params.id;
-      user = req.body.user;
+      user = req.body;
       User.findByIdAndUpdate(id, user, {new: true}, (err, doc)=>{
         res.json(doc);
       });
