@@ -2,7 +2,7 @@ const express = require('express');
 
 const eventRoutes = require('./event_routes');
 
-const User = require('../models/user')
+const User = require('../models/user');
 
 // eslint-disable-next-line new-cap
 const router = express.Router();
@@ -15,14 +15,15 @@ router.post('/', async (req, res) => {
 
 router.route('/:id')
     .get(async (req, res) => {
-      user = await User.findById(req.params.id)
+      user = await User.findById(req.params.id);
       res.json(user);
     })
-    .post((req, res) => {
-      res.send('this is userrr one post.page');
-    })
     .put((req, res) => {
-      res.send('this is use put.page');
+      const id = req.params.id;
+      user = req.body.user;
+      User.findByIdAndUpdate(id, user, {new: true}, (err, doc)=>{
+        res.json(doc);
+      });
     });
 
 
