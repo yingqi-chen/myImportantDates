@@ -19,7 +19,7 @@ router.route('/')
       res.send(result);
     });
 
-router.route('/:id')
+router.route('/:event_id')
     .get((req, res) => {
       res.send('this is events/:id.page');
     })

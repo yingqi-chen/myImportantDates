@@ -95,7 +95,6 @@ A practical app combined with express.js backend and React frontend.
   }
    ```
 
-
 ### User story:
 
   MVP:
