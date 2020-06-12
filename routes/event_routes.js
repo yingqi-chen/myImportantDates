@@ -1,5 +1,5 @@
 const express = require('express');
-const Event = require('../models/event')
+const Event = require('../models/event');
 // eslint-disable-next-line new-cap
 const router = express.Router({mergeParams: true});
 const albumRoutes = require('./album_routes');
@@ -15,8 +15,12 @@ router.route('/')
     .post(async (req, res) => {
       event = new Event(req.body);
       event.ownerId = req.params.id;
-      const result = await event.save();
-      res.send(result);
+      try {
+        const result = await event.save();
+        res.json(result);
+      } catch (err) {
+        res.json(err.message);
+      }
     });
 
 router.route('/:event_id')
