@@ -8,8 +8,8 @@ router.use('/:id/album', albumRoutes);
 
 router.route('/')
     .get((req, res) => {
-      Event.find({ownerId: req.params.id}, (err, doc) =>{
-        res.json(doc);
+      Event.find({ownerId: req.params.id}, (err, docs) =>{
+        res.json(docs);
       });
     })
     .post(async (req, res) => {
