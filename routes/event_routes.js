@@ -9,7 +9,7 @@ router.use('/:id/album', albumRoutes);
 router.route('/')
     .get((req, res) => {
       Event.find({ownerId: req.params.id}, (err, docs) =>{
-        res.json(docs);
+        docs.length > 0? res.json(docs.length) : res.json({'message': 'You don\'t have any events right now.'});
       });
     })
     .post(async (req, res) => {
