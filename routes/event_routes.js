@@ -34,13 +34,13 @@ router.route('/:event_id')
       const eventId = req.params.event_id;
       event = req.body;
       Event.findByIdAndUpdate(eventId, event, {new: true}, (err, doc)=>{
-        res.json(doc);
+        !err? res.json(doc): res.json(err.message);
       });
     })
     .delete((req, res) => {
       const eventId = req.params.event_id;
       Event.findByIdAndDelete(eventId, (err, doc)=>{
-        res.json(doc);
+        !err? res.json(doc): res.json(err.message);
       });
     });
 
