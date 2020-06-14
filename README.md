@@ -86,7 +86,7 @@ The user schema looks like:
   }
   ```
 3. PUT /users/:id
-  It is used for updating information of a certain user. It will receive an object including any of the following key like this:
+  It is used for updating information of a certain user. It receives an object including any of the following key like this:
   ```
     {
     "eventIDs": [],
@@ -97,7 +97,7 @@ The user schema looks like:
     "__v": 0
   }
   ```  
-  And it will return the information of the NEW user, .it will look like: 
+  And it will return the information of the NEW user, it will look like: 
   ```
   {
     "eventIDs": [],
@@ -253,9 +253,33 @@ Since there is only one album for one event, so to operate on album, you don't n
   ```
   
 3. PUT /users/:id/events/:event_id/album
-
-
+  It is used for updating information of an album. It receives an object including any of the following key like this:
+  ```
+  {
+    "_id": "5ee662d4fda1ec550000087a",
+    "name": "album2",
+    "date": "2020-06-14T17:48:04.851Z",
+    "joiners": [],
+    "ownerId": "5ee1aa395e99fa23e3d2dc4c",
+    "eventId": "5ee266381681f4058fa15f1f",
+    "__v": 0
+  }
+  ```
+  And it will return the information of the NEW user, it will look like: 
+  ```
+  {
+    "_id": "5ee662d4fda1ec550000087a",
+    "name": "album2",
+    "date": "2020-06-14T17:48:04.851Z",
+    "joiners": [],
+    "ownerId": "5ee1aa395e99fa23e3d2dc4c",
+    "eventId": "5ee266381681f4058fa15f1f",
+    "__v": 0
+  }
+  ```
+   
 4. DELETE /users/:id/events/:event_id/album
+  It is used for deleting an album. It will grab the event id from the URL, and check if you are the owner. You will get the deleted album. 
 
 ### User story:
 
