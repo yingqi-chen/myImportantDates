@@ -81,7 +81,6 @@ The user schema looks like:
     "_id": "5ee1bfe3fb5425392695d762",
     "name": "user",
     "email": "afdad",
-    "password": "pw", // might change this later
     "__v": 0
   }
   ```
@@ -93,7 +92,6 @@ The user schema looks like:
     "_id": "5ee1bfe3fb5425392695d762",
     "name": "user",
     "email": "afdad",
-    "password": "pw", // might change to exclude this property later
     "__v": 0
   }
   ```  
