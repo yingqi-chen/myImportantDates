@@ -238,14 +238,23 @@ Since there is only one album for one event, so to operate on album, you don't n
     'name': 'album1'
   }
   ```
-  And if an object is successfully created, you will get it like this:
+  And if an object is successfully created, you will get a new album object:
 
   ```
+  {
+    "_id": "5ee662d4fda1ec550000087a",
+    "name": "album1",
+    "date": "2020-06-14T17:48:04.851Z",
+    "joiners": [],
+    "ownerId": "5ee1aa395e99fa23e3d2dc4c",
+    "eventId": "5ee266381681f4058fa15f1f",
+    "__v": 0
+  }
   ```
-
-
   
 3. PUT /users/:id/events/:event_id/album
+
+
 4. DELETE /users/:id/events/:event_id/album
 
 ### User story:
