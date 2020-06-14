@@ -27,6 +27,13 @@ router.route('/')
         }
       });
     })
+    .put((req, res) => {
+      const eventId = req.params.eventId;
+      album = req.body;
+      Album.findOneAndUpdate({eventId}, album, {new: true}, (err, doc) => {
+        !err? res.json(doc): res.json(err.message);
+      });
+    })
     .delete((req, res) => {
       const eventId = req.params.eventId;
       Album.findOneAndDelete({eventId: eventId}, (err, doc) => {
