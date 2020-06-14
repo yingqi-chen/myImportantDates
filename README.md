@@ -53,7 +53,7 @@ The user schema looks like:
 
 
 1. POST /users   
-  It is used for creating a user. You have to pass something like this, "name", "email" and "password" are required:
+  It is used for creating a user. You have to pass something like this, "name", "email" and "password" are required, "password" has to between 5-10 length:
   ```
   {
   "name": "newuser",
