@@ -2,12 +2,18 @@
 const mongoose = require('mongoose');
 
 const albumSchema = mongoose.Schema({
-  name: {type: String},
+  name: {
+    type: String,
+    required: [true, 'A name is required.'],
+  },
   date: {type: Date, default: Date.now},
-  ownerId: {type: Number},
+  ownerId: {
+    type: String,
+    required: [true, 'You have to provide an owner ID to create an album.'],
+  },
   description: {type: String},
   joiners: [{joinerID: Number}],
-  eventID: {type: String}
+  eventId: {type: String}
 });
 
 module.exports = mongoose.model('Album', albumSchema);

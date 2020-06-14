@@ -19,26 +19,26 @@ router.route('/')
         const result = await event.save();
         res.json(result);
       } catch (err) {
-        res.json(err.message);
+        res.json(err);
       }
     });
 
-router.route('/:event_id')
+router.route('/:eventId')
     .get((req, res) => {
-      eventId = req.params.event_id;
+      eventId = req.params.eventId;
       event = Event.findById(eventId, (err, doc) =>{
         doc? res.send(doc):res.json({'message': 'There is no such event'})
       });
     })
     .put((req, res) => {
-      const eventId = req.params.event_id;
+      const eventId = req.params.eventId;
       event = req.body;
       Event.findByIdAndUpdate(eventId, event, {new: true}, (err, doc)=>{
         !err? res.json(doc): res.json(err.message);
       });
     })
     .delete((req, res) => {
-      const eventId = req.params.event_id;
+      const eventId = req.params.eventId;
       Event.findByIdAndDelete(eventId, (err, doc)=>{
         !err? res.json(doc): res.json(err.message);
       });

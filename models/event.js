@@ -19,7 +19,7 @@ const eventSchema = mongoose.Schema({
   },
   description: {type: String},
   joiners: [{joinerID: Number}],
-  albumID: {type: Number}
+  albumID: {type: Number},
 });
 
 module.exports = mongoose.model('Event', eventSchema);
