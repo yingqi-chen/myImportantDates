@@ -62,6 +62,7 @@ The user schema looks like:
 }
   ```
    and will get the new user: 
+  
   ```
   {
     "eventIDs": [],
@@ -108,7 +109,7 @@ The user schema looks like:
   }
   ```
 
-### Events API
+### Events
 
   The Event Schema looks like:
   ```
@@ -196,6 +197,46 @@ The user schema looks like:
 
   5. DELETE /users/:id/events/:event_id 
     It is used for deleting a user. It will grab the event id from the URL, and check if you are the owner. You will get the deleted event. 
+
+### Album
+
+The Album Schema looks like:
+
+```
+{
+  name: {type: String,},
+  date: {type: Date, default: Date.now},
+  ownerId: {type: String},
+  description: {type: String},
+  joiners: [{joinerID: Number}],
+  eventId: {type: String}
+};
+```
+Since there is only one album for one event, so to operate on album, you don't need the album ID.
+
+1. GET /users/:id/events/:event_id/album
+  It is used for getting the album of a certain event. And it will return the album object: 
+
+  ```
+  {
+    "_id": "5ee662d4fda1ec550000087a",
+    "name": "album1",
+    "date": "2020-06-14T17:48:04.851Z",
+    "joiners": [],
+    "ownerId": "5ee1aa395e99fa23e3d2dc4c",
+    "eventId": "5ee266381681f4058fa15f1f",
+    "__v": 0
+  }
+  ```
+
+2. POST /users/:id/events/:event_id/album
+
+  It is used for creating a user. It will grab the user id(required) and event id(required) from the URL, but you have to provide a name(required). The date is defaulted to be `Date.now`.
+
+
+  
+3. PUT /users/:id/events/:event_id/album
+4. DELETE /users/:id/events/:event_id/album
 
 ### User story:
 
