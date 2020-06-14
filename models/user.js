@@ -2,6 +2,7 @@
 /* eslint-disable require-jsdoc */
 // eslint-disable-next-line no-unused-vars
 const mongoose = require('mongoose');
+const uniqueValidator = require('mongoose-unique-validator');
 
 const userSchema = mongoose.Schema({
   name: {
@@ -22,5 +23,5 @@ const userSchema = mongoose.Schema({
   },
   eventIDs: [{type: String}]
 });
-
+userSchema.plugin(uniqueValidator);
 module.exports = mongoose.model('User', userSchema);
