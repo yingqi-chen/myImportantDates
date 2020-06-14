@@ -13,7 +13,10 @@ const albumSchema = mongoose.Schema({
   },
   description: {type: String},
   joiners: [{joinerID: Number}],
-  eventId: {type: String}
+  eventId: {
+    type: String,
+    required: [true, 'You have to provide an event ID to create an album.']
+  }
 });
 
 module.exports = mongoose.model('Album', albumSchema);
