@@ -231,7 +231,17 @@ Since there is only one album for one event, so to operate on album, you don't n
 
 2. POST /users/:id/events/:event_id/album
 
-  It is used for creating a user. It will grab the user id(required) and event id(required) from the URL, but you have to provide a name(required). The date is defaulted to be `Date.now`.
+  It is used for creating a user. It will grab the user id(required) and event id(required) from the URL, but you have to provide a name(required). The date is defaulted to be `Date.now`. What you provide should be an object like so:
+
+  ```
+  {
+    'name': 'album1'
+  }
+  ```
+  And if an object is successfully created, you will get it like this:
+
+  ```
+  ```
 
 
   
