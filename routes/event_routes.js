@@ -4,7 +4,7 @@ const Event = require('../models/event');
 const router = express.Router({mergeParams: true});
 const albumRoutes = require('./album_routes');
 
-router.use('/:id/album', albumRoutes);
+router.use('/:eventId/album', albumRoutes);
 
 router.route('/')
     .get((req, res) => {
@@ -19,7 +19,7 @@ router.route('/')
         const result = await event.save();
         res.json(result);
       } catch (err) {
-        res.json(err);
+        res.json(err.message);
       }
     });
 

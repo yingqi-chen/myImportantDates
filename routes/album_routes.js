@@ -6,15 +6,26 @@ const router = express.Router({mergeParams: true});
 
 router.route('/')
     .get((req, res) => {
-      Album.find({eventId: req.params.eventId}, (err, doc) =>{
+      Album.findOne({eventId: req.params.eventId}, (err, doc) =>{
         doc? res.json(doc) : res.json({'message': 'You don\'t have any albums right now.'});
       })
     })
-    .post((req, res) => {
-      res.send('this is events/:id/post.page');
+    .post(async (req, res) => {
+      try {
+        album = new Album(req.body);
+        album.ownerId = req.params.id;
+        album.eventId = req.params.eventId;
+        const result = await album.save();
+        res.json(result);
+      } catch (err) {
+        res.send(err.message);
+      }
     })
     .delete((req, res) => {
-      res.send('this is events/:id/delete.page');
+      const eventId = req.params.eventId
+      Album.findOneAndDelete({eventId: eventId}, (err, doc) => {
+        !err? res.json(doc) : res.json(err.message);
+      });
     });
 
 module.exports = router;
