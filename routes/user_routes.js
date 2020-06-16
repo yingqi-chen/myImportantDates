@@ -8,8 +8,16 @@ const User = require('../models/user');
 
 // eslint-disable-next-line new-cap
 const router = express.Router();
+const {check, validationResult} = require('express-validator');
 
-router.post('/', (req, res) => {
+router.post('/', [
+  check('email').isEmail(),
+  check('password').isLength({min: 5, max: 10}),
+], (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({errors: errors.array()});
+  }
   User.init()
       .then( async ()=>{
         const user = new User(req.body);
