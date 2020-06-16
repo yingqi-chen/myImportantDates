@@ -53,6 +53,7 @@ The user schema looks like:
 
 
 1. POST /users   
+
   It is used for creating a user. You have to pass something like this, "name", "email" and "password" are required, "password" has to between 5-10 length:
   ```
   {
@@ -74,6 +75,7 @@ The user schema looks like:
   }
   ```
 2. GET /users/:id
+
   It is used for getting information of a certain user. And it will return: 
   ```
   {
@@ -85,6 +87,7 @@ The user schema looks like:
   }
   ```
 3. PUT /users/:id
+
   It is used for updating information of a certain user. It receives an object including any of the following key like this:
   ```
     {
@@ -122,6 +125,7 @@ The user schema looks like:
   ```
 
   1. GET /users/:id/events
+
   It is used for getting all events of a certain user. And it will return an array: 
 ```
  [
@@ -144,6 +148,7 @@ The user schema looks like:
  ]
 ```
   2. POST /users/:id/events/ 
+
   It is used for creating a user. It will grab the user id from the URL, but you have to provide a name(required). The date is defaulted to be `Date.now`.
   ```
   {
@@ -163,6 +168,7 @@ The user schema looks like:
 ```
 
   3. GET /users/:id/events/:event_id 
+
   It is used for get the information of a certain event. And you will get the Event: 
 ```
     {
@@ -176,6 +182,7 @@ The user schema looks like:
 ```
 
   4. PUT /users/:id/events/:event_id 
+
   It is used for editing a user. It will grab the event id from the URL, and check if you are the owner. You will have to provide an object with the key/value pair to modify:
   ```
   {
@@ -194,6 +201,7 @@ The user schema looks like:
     }
 ```
   5. DELETE /users/:id/events/:event_id 
+
     It is used for deleting a user. It will grab the event id from the URL, and check if you are the owner. You will get the deleted event. 
 
 ### Album
@@ -213,6 +221,7 @@ The Album Schema looks like:
 Since there is only one album for one event, so to operate on album, you don't need the album ID.
 
 1. GET /users/:id/events/:event_id/album
+
   It is used for getting the album of a certain event. And it will return the album object: 
 
   ```
@@ -251,6 +260,7 @@ Since there is only one album for one event, so to operate on album, you don't n
   ```
   
 3. PUT /users/:id/events/:event_id/album
+
   It is used for updating information of an album. It receives an object including any of the following key like this:
   ```
   {
@@ -277,13 +287,14 @@ Since there is only one album for one event, so to operate on album, you don't n
   ```
    
 4. DELETE /users/:id/events/:event_id/album
+
   It is used for deleting an album. It will grab the event id from the URL, and check if you are the owner. You will get the deleted album. 
 
 ### User story:
 
   MVP:
 
-	1. A user is able to create an event that is important and then add information to the event(like images and description). 
+	1. A user is able to create an event that is important and then add information to the event(like images and description).
   
   2. A user is able to go to event page and see that event is counting down if it hasn't happened yet or will see how far is the next aniversary (options include year or week or month anniversary)
 
