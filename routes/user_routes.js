@@ -42,7 +42,14 @@ router.route('/:id')
         res.json(err.message);
       }
     })
-    .put((req, res) => {
+    .put([
+      check('email').isEmail(),
+      check('password').isLength({min: 5, max: 10}),
+    ], (req, res) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(422).json({errors: errors.array()});
+      }
       const id = req.params.id;
       user = req.body;
       User.findByIdAndUpdate(id, user, {new: true}, (err, user)=>{
