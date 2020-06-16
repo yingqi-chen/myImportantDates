@@ -192,7 +192,7 @@ The user schema looks like:
         "ownerId": "5ee1aa395e99fa23e3d2dc4c",
         "__v": 0
     }
-
+```
   5. DELETE /users/:id/events/:event_id 
     It is used for deleting a user. It will grab the event id from the URL, and check if you are the owner. You will get the deleted event. 
 

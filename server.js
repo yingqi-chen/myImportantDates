@@ -8,6 +8,7 @@ const routes = require('./routes');
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
+
 app.use('/', routes);
 
 mongoose.connect('mongodb://localhost:27017/my_important_dates', {
