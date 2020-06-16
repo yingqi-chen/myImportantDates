@@ -1,5 +1,18 @@
 const User = require('../models/user');
 
+const getUser = async (req, res) => {
+  try {
+    user = await User.findById(req.params.id);
+    res.json({
+      'name': user.name,
+      'email': user.email,
+      'eventIDs': user.eventIDs,
+    });
+  } catch (err) {
+    res.json(err.message);
+  }
+};
+
 const createUser = (req, res) => {
   User.init()
       .then( async ()=>{
@@ -28,4 +41,4 @@ const updateUser = (req, res) => {
   });
 };
 
-module.exports = {createUser, updateUser};
+module.exports = {getUser, createUser, updateUser};
