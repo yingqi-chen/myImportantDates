@@ -12,4 +12,20 @@ const createUser = (req, res) => {
       });
 };
 
-module.exports = {createUser};
+const updateUser = (req, res) => {
+  const id = req.params.id;
+  user = req.body;
+  User.findByIdAndUpdate(id, user, {new: true}, (err, user)=>{
+    if (!err) {
+      res.json({
+        'name': user.name,
+        'email': user.email,
+        'eventIDs': user.eventIDs,
+      });
+    } else {
+      res.json(err.message);
+    };
+  });
+};
+
+module.exports = {createUser, updateUser};
