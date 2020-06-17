@@ -9,6 +9,19 @@ const setUser = (req, res, next) => {
   });
 };
 
+const setEvent = (req, res, next) => {
+  eventId = req.params.eventId;
+  event = Event.findById(eventId, (err, doc) =>{
+    if (err) res.json(err.message);
+    else {
+      res.locals.event = doc;
+      next();
+    };
+  },
+  );
+};
+
+
 const getEvents = (req, res) => {
   Event.find({ownerId: req.params.id}, (err, docs) =>{
     if (err) res.json(err.message);
@@ -34,29 +47,23 @@ const createEvents = async (req, res) => {
 };
 
 const getEvent = (req, res) => {
-  eventId = req.params.eventId;
-  event = Event.findById(eventId, (err, doc) =>{
-    if (err) res.json(err.message);
-    else {
-      doc? res.send(doc):res.json({'message': 'There is no such event'});
-    }
-  });
+  res.json(res.locals.event);
 };
 
 const editEvent = (req, res) => {
-  const eventId = req.params.eventId;
-  event = req.body;
-  Event.findByIdAndUpdate(eventId, event, {new: true}, (err, doc)=>{
-      !err? res.json(doc): res.json(err.message);
+  event = res.locals.event;
+  newEvent = req.body;
+  Event.findByIdAndUpdate(event.id, newEvent, {new: true}, (err, doc)=>{
+      !err? res.json(doc): res.json(err.message)
   });
 };
 
 const deleteEvent = (req, res) => {
-  const eventId = req.params.eventId;
-  Event.findByIdAndDelete(eventId, (err, doc)=>{
+  event = res.locals.event;
+  Event.findByIdAndDelete(event.id, (err, doc)=>{
       !err? res.json(doc): res.json(err.message);
   });
 };
 
 
-module.exports = {getEvents, createEvents, setUser, getEvent, editEvent, deleteEvent};
+module.exports = {getEvents, createEvents, setUser, getEvent, editEvent, deleteEvent, setEvent};
