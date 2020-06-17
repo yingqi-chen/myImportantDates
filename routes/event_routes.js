@@ -2,12 +2,12 @@ const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router({mergeParams: true});
 const albumRoutes = require('./album_routes');
-const {getEvents, createEvents} = require('../controllers/eventsController');
+const {getEvents, createEvents,setUser} = require('../controllers/eventsController');
 
 router.use('/:eventId/album', albumRoutes);
 
 router.route('/')
-    .get(getEvents)
+    .get(testing, getEvents)
     .post(createEvents);
 
 // router.route('/:eventId')

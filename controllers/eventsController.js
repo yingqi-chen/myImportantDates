@@ -1,9 +1,19 @@
 const Event = require('../models/event');
 const User = require('../models/user');
 
+const setUser = (req, res, next) => {
+  User.findById(ownerId, (err, user) => {
+    err? res.json(err.message) : res.locals.user = user;
+  });
+  next();
+};
+
 const getEvents = (req, res) => {
   Event.find({ownerId: req.params.id}, (err, docs) =>{
-      docs.length > 0? res.json(docs) : res.json({'message': 'You don\'t have any events right now.'});
+    if (err) res.json(err.message);
+    else {
+        docs.length > 0? res.json(docs) : res.json({'message': 'You don\'t have any events right now.'});
+    }
   });
 };
 
@@ -26,4 +36,5 @@ const createEvents = async (req, res) => {
   }
 };
 
-module.exports = {getEvents, createEvents};
+
+module.exports = {getEvents, createEvents, setUser};
