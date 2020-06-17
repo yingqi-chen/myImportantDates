@@ -23,8 +23,22 @@ const createAlbum = (req, res) => {
       }
     }
   });
-}
+};
+
+const editAlbum = (req, res) => {
+  const eventId = req.params.eventId;
+  album = req.body;
+  Album.findOneAndUpdate({eventId}, album, {new: true}, (err, doc) => {
+    !err? res.json(doc): res.json(err.message);
+  });
+};
+
+const deleteAlbum = (req, res) => {
+  const eventId = req.params.eventId;
+  Album.findOneAndDelete({eventId: eventId}, (err, doc) => {
+    !err? res.json(doc) : res.json(err.message);
+  });
+};
 
 
-
-module.exports = {getAlbum, createAlbum};
+module.exports = {getAlbum, createAlbum, editAlbum, deleteAlbum};
