@@ -1,5 +1,16 @@
 const User = require('../models/user');
 
+const login = async (req, res) => {
+  user = await User.findOne({email: req.body.email});
+  try {
+    res.json(user.comparePasswords());
+  } catch (err) {
+    res.json(err.message);
+  }
+};
+
+// const loginRequired
+
 const getUser = async (req, res) => {
   try {
     user = await User.findById(req.params.id);
@@ -41,4 +52,4 @@ const updateUser = (req, res) => {
   });
 };
 
-module.exports = {getUser, createUser, updateUser};
+module.exports = {getUser, createUser, updateUser, login};
