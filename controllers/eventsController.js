@@ -43,5 +43,13 @@ const getEvent = (req, res) => {
   });
 };
 
+const editEvent = (req, res) => {
+  const eventId = req.params.eventId;
+  event = req.body;
+  Event.findByIdAndUpdate(eventId, event, {new: true}, (err, doc)=>{
+      !err? res.json(doc): res.json(err.message);
+  });
+};
 
-module.exports = {getEvents, createEvents, setUser, getEvent};
+
+module.exports = {getEvents, createEvents, setUser, getEvent, editEvent};
