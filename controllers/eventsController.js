@@ -33,5 +33,15 @@ const createEvents = async (req, res) => {
   }
 };
 
+const getEvent = (req, res) => {
+  eventId = req.params.eventId;
+  event = Event.findById(eventId, (err, doc) =>{
+    if (err) res.json(err.message);
+    else {
+      doc? res.send(doc):res.json({'message': 'There is no such event'});
+    }
+  });
+};
 
-module.exports = {getEvents, createEvents, setUser};
+
+module.exports = {getEvents, createEvents, setUser, getEvent};
