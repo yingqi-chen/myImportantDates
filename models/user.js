@@ -3,6 +3,7 @@
 // eslint-disable-next-line no-unused-vars
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
+const bcrypt = require('bcrypt');
 
 const userSchema = mongoose.Schema({
   name: {
@@ -15,7 +16,7 @@ const userSchema = mongoose.Schema({
     index: true,
     required: [true, 'An email is required.'],
   },
-  password: {
+  hashpassword: {
     type: String,
     required: [true, 'A password is required.'],
     minlength: 5,
@@ -23,5 +24,11 @@ const userSchema = mongoose.Schema({
   },
   eventIDs: [String],
 });
+
 userSchema.plugin(uniqueValidator);
+userSchema.methods.comparePasswords = (password, hashPassword) => {
+  return bcrypt.compareSync(password, hashPassword);
+}
+
+
 module.exports = mongoose.model('User', userSchema);
