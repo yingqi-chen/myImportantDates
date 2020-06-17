@@ -2,14 +2,11 @@ const express = require('express');
 const Album = require('../models/album');
 // eslint-disable-next-line new-cap
 const router = express.Router({mergeParams: true});
+const { getAlbum }  = require('../controllers/albumsController')
 
 
 router.route('/')
-    .get((req, res) => {
-      Album.findOne({eventId: req.params.eventId}, (err, doc) =>{
-        doc? res.json(doc) : res.json({'message': 'You don\'t have any albums right now.'});
-      });
-    })
+    .get(getAlbum)
     .post( (req, res) => {
       Album.findOne({eventId: req.params.eventId}, async (err, doc) =>{
         if (doc) {
