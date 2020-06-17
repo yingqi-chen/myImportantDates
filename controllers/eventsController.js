@@ -12,11 +12,11 @@ const setUser = (req, res, next) => {
 const setEvent = (req, res, next) => {
   eventId = req.params.eventId;
   event = Event.findById(eventId, (err, doc) =>{
-    if (err) res.json(err.message);
+    if (err) res.json('No such event found.');
     else {
       res.locals.event = doc;
       next();
-    };
+    }
   },
   );
 };
@@ -54,7 +54,7 @@ const editEvent = (req, res) => {
   event = res.locals.event;
   newEvent = req.body;
   Event.findByIdAndUpdate(event.id, newEvent, {new: true}, (err, doc)=>{
-      !err? res.json(doc): res.json(err.message)
+      !err? res.json(doc): res.json(err.message);
   });
 };
 
