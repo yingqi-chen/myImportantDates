@@ -51,5 +51,12 @@ const editEvent = (req, res) => {
   });
 };
 
+const deleteEvent = (req, res) => {
+  const eventId = req.params.eventId;
+  Event.findByIdAndDelete(eventId, (err, doc)=>{
+      !err? res.json(doc): res.json(err.message);
+  });
+};
 
-module.exports = {getEvents, createEvents, setUser, getEvent, editEvent};
+
+module.exports = {getEvents, createEvents, setUser, getEvent, editEvent, deleteEvent};
