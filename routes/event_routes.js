@@ -2,22 +2,13 @@ const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router({mergeParams: true});
 const albumRoutes = require('./album_routes');
-const {getEvents} = require('../controllers/eventsController');
+const {getEvents, createEvents} = require('../controllers/eventsController');
 
 router.use('/:eventId/album', albumRoutes);
 
 router.route('/')
-    .get(getEvents);
-    // .post(async (req, res) => {
-    //   event = new Event(req.body);
-    //   event.ownerId = req.params.id;
-    //   try {
-    //     const result = await event.save();
-    //     res.json(result);
-    //   } catch (err) {
-    //     res.json(err.message);
-    //   }
-    // });
+    .get(getEvents)
+    .post(createEvents);
 
 // router.route('/:eventId')
 //     .get((req, res) => {
