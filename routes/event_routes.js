@@ -5,13 +5,14 @@ const albumRoutes = require('./album_routes');
 const {getEvents, createEvents, setUser, getEvent, editEvent} = require('../controllers/eventsController');
 
 router.use('/:eventId/album', albumRoutes);
+router.use('/', setUser);
 
 router.route('/')
-    .get(setUser, getEvents)
-    .post(setUser, createEvents);
+    .get(getEvents)
+    .post(createEvents);
 
 router.route('/:eventId')
-    .get(setUser, getEvent)
+    .get(getEvent)
     .put(editEvent)
 //     .delete((req, res) => {
 //       const eventId = req.params.eventId;
