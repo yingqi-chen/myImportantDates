@@ -2,6 +2,14 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const setUser = (req, res, next) => {
+  userId = req.params.id;
+  User.findById(userId, (err, user) => {
+    err? res.json('Can\'t find the user') : res.locals.user = user;
+    next();
+  });
+};
+
 const login = async (req, res) => {
   User.findOne({email: req.body.email}, (err, user) => {
     if (err) res.json(err.message);
@@ -70,4 +78,4 @@ const updateUser = (req, res) => {
   });
 };
 
-module.exports = {getUser, signUp, updateUser, login, loginRequired};
+module.exports = {getUser, signUp, updateUser, login, loginRequired, setUser};

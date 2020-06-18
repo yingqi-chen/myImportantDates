@@ -1,13 +1,5 @@
 const Event = require('../models/event');
-const User = require('../models/user');
 
-const setUser = (req, res, next) => {
-  ownerId = req.params.id;
-  User.findById(ownerId, (err, user) => {
-    err? res.json('Can\'t find the user') : res.locals.user = user;
-    next();
-  });
-};
 
 const setEvent = (req, res, next) => {
   eventId = req.params.eventId;
@@ -66,4 +58,4 @@ const deleteEvent = (req, res) => {
 };
 
 
-module.exports = {getEvents, createEvents, setUser, getEvent, editEvent, deleteEvent, setEvent};
+module.exports = {getEvents, createEvents, getEvent, editEvent, deleteEvent, setEvent};
