@@ -16,11 +16,10 @@ const userSchema = mongoose.Schema({
     index: true,
     required: [true, 'An email is required.'],
   },
-  hashpassword: {
+  hashPassword: {
     type: String,
     required: [true, 'A password is required.'],
     minlength: 5,
-    maxlength: 10,
   },
   eventIDs: [String],
 });
