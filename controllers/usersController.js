@@ -1,18 +1,15 @@
 const User = require('../models/user');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
-// const login = async (req, res) => {
-//   User.findOne({email: req.body.email}, (err, user) => {
-//      if (user.comparePasswords(req.body.password, user.hashPassword)) 
-
-
-//   });
-//   try {
-//     res.json(user.comparePasswords(user.hashPassword, req.body.password));
-//   } catch (err) {
-//     res.json(err.message);
-//   }
-// };
+const login = async (req, res) => {
+  User.findOne({email: req.body.email}, (err, user) => {
+    if (user.comparePasswords(req.body.password, user.hashPassword)) {
+      res.send('good pass');
+    } else {
+      res.send('not work');
+    }
+  });
+};
 
 // const loginRequired
 
@@ -58,4 +55,4 @@ const updateUser = (req, res) => {
   });
 };
 
-module.exports = {getUser, createUser, updateUser};
+module.exports = {getUser, createUser, updateUser,login};
