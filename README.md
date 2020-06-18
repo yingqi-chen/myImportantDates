@@ -88,7 +88,7 @@ The user schema looks like:
   ```
 3. PUT /users/:id
 
-  It is used for updating information of a certain user. It receives an object including any of the following key like this:
+  It is used for updating information of a certain user. It receives an object including any of the following key like this, name, email and password are required still. So make sure when the user fills out the change form, the frontend should pre-fill out all the column, and give the backend at least name, email and password.
   ```
     {
     "eventIDs": [],

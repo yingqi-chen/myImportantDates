@@ -9,7 +9,7 @@ const jwt = require('jsonwebtoken');
 
 app.use(bodyParser.json());
 
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
   if (req.headers && req.headers.authorization && req.headers.authorization.split(' ')[0]==='JWT') {
     token = req.headers.authorization.split(' ')[1];
     jwt.verify(token, 'secretKey', (err, decoded) => {

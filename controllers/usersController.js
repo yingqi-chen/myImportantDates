@@ -8,7 +8,11 @@ const setUser = (req, res, next) => {
     err? res.json('Can\'t find the user') : res.locals.user = user;
     next();
   });
-};
+};// have to change this, since this user is the URL user, not the token user
+
+const rightUser = (req, res, next) => {
+  req.user && req.user.id===req.params.id? next() : res.json({'message': 'You don\'t have access to do this.'});
+}
 
 const login = async (req, res) => {
   User.findOne({email: req.body.email}, (err, user) => {
@@ -32,9 +36,6 @@ const loginRequired = (req, res, next) => {
   req.user? next() : res.json({'message': 'You have to log in first.'});
 };
 
-// const rightUser = (req, res, next) => {
-
-// }
 
 const getUser = async (req, res) => {
   try {
@@ -64,7 +65,8 @@ const signUp = (req, res) => {
 
 const updateUser = (req, res) => {
   const id = req.params.id;
-  user = req.body;
+  user = req.body; 
+  user.hashPassword = bcrypt.hashSync(req.body.password, 10);
   User.findByIdAndUpdate(id, user, {new: true}, (err, user)=>{
     if (!err) {
       res.json({
@@ -78,4 +80,4 @@ const updateUser = (req, res) => {
   });
 };
 
-module.exports = {getUser, signUp, updateUser, login, loginRequired, setUser};
+module.exports = {getUser, signUp, updateUser, login, loginRequired, setUser, rightUser};
