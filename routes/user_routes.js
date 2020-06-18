@@ -3,8 +3,9 @@ const eventRoutes = require('./event_routes');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 const validateUser = require('../validator');
-const {getUser, createUser, updateUser} = require('../controllers/usersController');
+const {getUser, createUser, updateUser, loginRequired} = require('../controllers/usersController');
 
+router.use(loginRequired);
 
 router.post('/', validateUser, createUser);
 

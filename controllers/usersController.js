@@ -20,7 +20,9 @@ const login = async (req, res) => {
   });
 };
 
-// const loginRequired
+const loginRequired = (req, res, next) => {
+  req.user? next() : res.json({'message': 'Not authorized user.'});
+}
 
 const getUser = async (req, res) => {
   try {
@@ -64,4 +66,4 @@ const updateUser = (req, res) => {
   });
 };
 
-module.exports = {getUser, createUser, updateUser, login};
+module.exports = {getUser, createUser, updateUser, login, loginRequired};
