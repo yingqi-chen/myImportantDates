@@ -21,8 +21,12 @@ const login = async (req, res) => {
 };
 
 const loginRequired = (req, res, next) => {
-  req.user? next() : res.json({'message': 'Not authorized user.'});
-}
+  req.user? next() : res.json({'message': 'You have to log in first.'});
+};
+
+// const rightUser = (req, res, next) => {
+
+// }
 
 const getUser = async (req, res) => {
   try {
@@ -37,7 +41,7 @@ const getUser = async (req, res) => {
   }
 };
 
-const createUser = (req, res) => {
+const signUp = (req, res) => {
   User.init()
       .then( async ()=>{
         const user = new User(req.body);
@@ -66,4 +70,4 @@ const updateUser = (req, res) => {
   });
 };
 
-module.exports = {getUser, createUser, updateUser, login, loginRequired};
+module.exports = {getUser, signUp, updateUser, login, loginRequired};
