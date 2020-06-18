@@ -2,13 +2,6 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const setUser = (req, res, next) => {
-  userId = req.params.id;
-  User.findById(userId, (err, user) => {
-    err? res.json('Can\'t find the user') : res.locals.user = user;
-    next();
-  });
-};// have to change this, since this user is the URL user, not the token user
 
 const rightUser = (req, res, next) => {
   req.user && req.user.id===req.params.id? next() : res.json({'message': 'You don\'t have access to do this.'});
@@ -80,4 +73,4 @@ const updateUser = (req, res) => {
   });
 };
 
-module.exports = {getUser, signUp, updateUser, login, loginRequired, setUser, rightUser};
+module.exports = {getUser, signUp, updateUser, login, loginRequired, rightUser};

@@ -1,4 +1,5 @@
 const Event = require('../models/event');
+const User = require('../models/user')
 
 
 const setEvent = (req, res, next) => {
@@ -25,13 +26,18 @@ const getEvents = (req, res) => {
 
 const createEvents = async (req, res) => {
   event = new Event(req.body);
-  console.log(res.locals.user);
   try {
-    const user = res.locals.user;
+    const user = req.user;
     event.ownerId = user.id;
     const result = await event.save();
-    user.eventIDs.push(result.id);
-    await user.save();
+    User.findById(user.id, async (err, user) => {
+      if (!err) {
+        user.eventIDs.push(result.id);
+        await user.save();
+      } else {
+        res.json({'message': err.message})
+      }
+    });
     res.json(result);
   } catch (err) {
     res.json(err.message);
