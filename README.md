@@ -38,7 +38,6 @@ A practical app combined with express.js backend and React frontend.
 `express-list-endpoints` is used to list all the routes we have so far. Once you run `npm run dev`, you will see all the routes that are currently available. 
 
 ## API
-
 ### User
 
 The user schema looks like:
@@ -89,6 +88,8 @@ The user schema looks like:
 3. PUT /users/:id
 
   It is used for updating information of a certain user. It receives an object including any of the following key like this, name, email and password are required still. So make sure when the user fills out the change form, the frontend should pre-fill out all the column, and give the backend at least name, email and password.
+
+  But before you can update the user, it will verify that you are the right user first, if you are not, you cannot change the user info. 
   ```
     {
     "eventIDs": [],
@@ -109,6 +110,15 @@ The user schema looks like:
     "__v": 0
   }
   ```
+4. POST /login
+
+You will need an email and a password to login. If you are successfully logged in, you will get a token that embeds your user information like this: 
+
+`
+{'token': .....}
+`
+You will need to carry this token all the time during your visit on this website so that your identity is verified. 
+
 
 ### Events
 
@@ -123,6 +133,8 @@ The user schema looks like:
   albumID: {type: Number}
 }
   ```
+
+  Note: You cannot change the events(Create, update, delete) if you are not the owner. But you can always check the events. I want to add a verification later to only allow events be seen by owner and joiners after the frontend is built.  
 
   1. GET /users/:id/events
 
