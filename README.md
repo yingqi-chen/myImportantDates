@@ -52,7 +52,7 @@ The user schema looks like:
 ```
 
 
-1. POST /users   
+1. POST /signup   
 
   It is used for creating a user. You have to pass something like this, "name", "email" and "password" are required, "password" has to between 5-10 length:
   ```
@@ -88,7 +88,7 @@ The user schema looks like:
   ```
 3. PUT /users/:id
 
-  It is used for updating information of a certain user. It receives an object including any of the following key like this:
+  It is used for updating information of a certain user. It receives an object including any of the following key like this, name, email and password are required still. So make sure when the user fills out the change form, the frontend should pre-fill out all the column, and give the backend at least name, email and password.
   ```
     {
     "eventIDs": [],

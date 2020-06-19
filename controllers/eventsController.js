@@ -1,13 +1,6 @@
 const Event = require('../models/event');
-const User = require('../models/user');
+const User = require('../models/user')
 
-const setUser = (req, res, next) => {
-  ownerId = req.params.id;
-  User.findById(ownerId, (err, user) => {
-    err? res.json('Can\'t find the user') : res.locals.user = user;
-    next();
-  });
-};
 
 const setEvent = (req, res, next) => {
   eventId = req.params.eventId;
@@ -33,13 +26,18 @@ const getEvents = (req, res) => {
 
 const createEvents = async (req, res) => {
   event = new Event(req.body);
-  console.log(res.locals.user);
   try {
-    const user = res.locals.user;
+    const user = req.user;
     event.ownerId = user.id;
     const result = await event.save();
-    user.eventIDs.push(result.id);
-    await user.save();
+    User.findById(user.id, async (err, user) => {
+      if (!err) {
+        user.eventIDs.push(result.id);
+        await user.save();
+      } else {
+        res.json({'message': err.message})
+      }
+    });
     res.json(result);
   } catch (err) {
     res.json(err.message);
@@ -66,4 +64,4 @@ const deleteEvent = (req, res) => {
 };
 
 
-module.exports = {getEvents, createEvents, setUser, getEvent, editEvent, deleteEvent, setEvent};
+module.exports = {getEvents, createEvents, getEvent, editEvent, deleteEvent, setEvent};

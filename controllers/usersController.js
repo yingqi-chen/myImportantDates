@@ -1,4 +1,34 @@
 const User = require('../models/user');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+
+const rightUser = (req, res, next) => {
+  req.user && req.user.id===req.params.id? next() : res.json({'message': 'You don\'t have access to do this.'});
+}
+
+const login = async (req, res) => {
+  User.findOne({email: req.body.email}, (err, user) => {
+    if (err) res.json(err.message);
+    if (!user) res.json({'message': 'User not found'});
+    else if (user && user.comparePasswords(req.body.password, user.hashPassword)) {
+      res.json({'token': jwt.sign({
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        eventIDs: user.eventIDs,
+      }, 'secretKey'),
+      });
+    } else {
+      res.send({'message': 'Your password and email doesn\'t match.'});
+    }
+  });
+};
+
+const loginRequired = (req, res, next) => {
+  req.user? next() : res.json({'message': 'You have to log in first.'});
+};
+
 
 const getUser = async (req, res) => {
   try {
@@ -13,10 +43,11 @@ const getUser = async (req, res) => {
   }
 };
 
-const createUser = (req, res) => {
+const signUp = (req, res) => {
   User.init()
       .then( async ()=>{
         const user = new User(req.body);
+        user.hashPassword = bcrypt.hashSync(req.body.password, 10);
         const result = await user.save();
         res.json(result);
       })
@@ -27,7 +58,8 @@ const createUser = (req, res) => {
 
 const updateUser = (req, res) => {
   const id = req.params.id;
-  user = req.body;
+  user = req.body; 
+  user.hashPassword = bcrypt.hashSync(req.body.password, 10);
   User.findByIdAndUpdate(id, user, {new: true}, (err, user)=>{
     if (!err) {
       res.json({
@@ -41,4 +73,4 @@ const updateUser = (req, res) => {
   });
 };
 
-module.exports = {getUser, createUser, updateUser};
+module.exports = {getUser, signUp, updateUser, login, loginRequired, rightUser};
