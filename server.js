@@ -1,6 +1,5 @@
 const express = require('express');
 const listEndpoints = require('express-list-endpoints');
-const path = require('path');
 const mongoose = require('mongoose');
 const app = express();
 const PORT = 5000;

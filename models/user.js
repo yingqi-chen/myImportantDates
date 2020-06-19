@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
     minlength: 5,
     maxlength: 10,
   },
-  eventIDs: [{type: String}]
+  eventIDs: [String],
 });
 userSchema.plugin(uniqueValidator);
 module.exports = mongoose.model('User', userSchema);
