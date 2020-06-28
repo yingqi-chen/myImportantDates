@@ -25,7 +25,7 @@ app.use(async (req, res, next) => {
 
 app.use('/', routes);
 
-mongoose.connect('mongodb://localhost:27017/my_important_dates', {
+mongoose.connect(process.env.DB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
