@@ -32,7 +32,7 @@ mongoose.connect('mongodb://localhost:27017/my_important_dates', {
   console.log('connect succesfully!');
 });
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT || PORT, () => {
   console.log(`Listening on PORT ${PORT}`);
   console.log(listEndpoints(app));
 });

@@ -52,7 +52,7 @@ const signUp = (req, res) => {
         res.json(result);
       })
       .catch((err) => {
-        res.json(err.message);
+        res.json(err);
       });
 };
 
