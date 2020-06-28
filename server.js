@@ -6,6 +6,7 @@ const PORT = 5000;
 const routes = require('./routes');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 app.use(bodyParser.json());
 
@@ -33,6 +34,6 @@ mongoose.connect('mongodb://localhost:27017/my_important_dates', {
 });
 
 app.listen(process.env.PORT || PORT, () => {
-  console.log(`Listening on PORT ${PORT}`);
+  console.log(`Listening on PORT ${process.env.PORT||PORT}`);
   console.log(listEndpoints(app));
 });
