@@ -24,7 +24,7 @@ const userSchema = mongoose.Schema({
   eventIDs: [String],
 });
 
-userSchema.plugin(uniqueValidator, {message: "My custom error message."});
+userSchema.plugin(uniqueValidator, {message: "email has to be unique."});
 userSchema.methods.comparePasswords = (password, hashPassword) => {
   return bcrypt.compareSync(password, hashPassword);
 }
