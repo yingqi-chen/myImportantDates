@@ -6,8 +6,10 @@ const PORT = 6000;
 const routes = require('./routes');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
+const cors = require('cors')
 require('dotenv').config();
 
+app.use(cors())
 app.use(bodyParser.json());
 
 app.use(async (req, res, next) => {
